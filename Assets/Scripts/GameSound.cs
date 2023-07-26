@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundController : MonoBehaviour
+public class GameSound : MonoBehaviour
 {
+    public static GameSound Instance;
     public AudioClip goodSnackSound;
     public AudioClip badSnackSound;
     public AudioClip gameOverSound;
-    public AudioClip buttonClick;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -16,10 +16,21 @@ public class SoundController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void GoodSnackSound()
@@ -37,9 +48,4 @@ public class SoundController : MonoBehaviour
         audioSource.PlayOneShot(gameOverSound, 1.0f);
     }
 
-    public void ButtonClick()
-    {
-        DontDestroyOnLoad(gameObject);
-        audioSource.PlayOneShot(buttonClick, 1.0f);
-    }
 }

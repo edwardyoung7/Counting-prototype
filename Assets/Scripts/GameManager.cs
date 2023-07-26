@@ -10,14 +10,10 @@ public class GameManager : MonoBehaviour
     private int score;
     private float snackSpawnRate;
     private float powerupSpawnRate;
-    private Button button;
     private int level;
-    private SoundController soundController;
     private AudioSource audioSource;
 
     public int lives = 3;
-    public GameObject startScreen;
-    public Button startButton;
     public GameObject[] snacks;
     public GameObject[] powerUps;
     public Text scoreText;
@@ -25,13 +21,12 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public GameObject gameOverScreen;
     public GameObject player;
-    public Button restartButton;
 
 
     // Start is called before the first frame update 
     void Start()
     {
-        soundController = GameObject.Find("Sound Controller").GetComponent<SoundController>();
+        StartGame();
     }
 
     // Update is called once per frame
@@ -61,12 +56,10 @@ public class GameManager : MonoBehaviour
         score = 0;
         level = 1;
         snackSpawnRate = 2;
-        soundController.ButtonClick();
         StartCoroutine(SpawnSnacks());
         StartCoroutine(SpawnPowerUps());
         UpdateScore(0);
         UpdateLives(0);
-        startScreen.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         livesText.gameObject.SetActive(true);
         player.gameObject.SetActive(true);
@@ -124,15 +117,9 @@ public class GameManager : MonoBehaviour
             {
                 gameOverScreen.gameObject.SetActive(true);
                 isGameActive = false;
-                soundController.GameOverSound();
+                GameSound.Instance.GameOverSound();
             }
         }
-    }
-
-    public void RestartGame()
-    {
-        soundController.ButtonClick();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

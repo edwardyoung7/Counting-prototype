@@ -8,7 +8,6 @@ public class ObjectsBehavior : MonoBehaviour
     public int pointValue;
     public float speed = 3.0f;
 
-    private SoundController soundController;
     private float spawnRange = 15;
     private float spawnPosZ = 0;
     private float spawnPosY = 30;
@@ -25,7 +24,6 @@ public class ObjectsBehavior : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         player = GameObject.Find("Player");
         snacksRb = GetComponent<Rigidbody>();
-        soundController = GameObject.Find("Sound Controller").GetComponent<SoundController>();
 
         transform.position = RandomPosition();
     }
@@ -47,40 +45,40 @@ public class ObjectsBehavior : MonoBehaviour
             {
                 Destroy(gameObject);
                 gameManager.UpdateScore(pointValue);
-                soundController.GoodSnackSound();
+                GameSound.Instance.GoodSnackSound();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Bad snack") )
             {
                 Destroy(gameObject);
                 gameManager.UpdateScore(pointValue);
-                soundController.BadSnackSound();
+                GameSound.Instance.BadSnackSound();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Bad powerup"))
             {
                 Destroy(gameObject);
-                soundController.BadSnackSound();
+                GameSound.Instance.BadSnackSound();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Good powerup"))
             {
                 Destroy(gameObject);
-                soundController.GoodSnackSound();
+                GameSound.Instance.GoodSnackSound();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Extra life"))
             {
                 Destroy(gameObject);
                 gameManager.UpdateLives(-1);
-                soundController.GoodSnackSound();
+                GameSound.Instance.GoodSnackSound();
             }
 
             else if (other.CompareTag("Ground") && gameObject.CompareTag("Good snack"))
             {
                 Destroy(gameObject);
                 gameManager.UpdateLives(1);
-                soundController.BadSnackSound();
+                GameSound.Instance.BadSnackSound();
             }
             else if (other.CompareTag("Ground") && !gameObject.CompareTag("Good snack"))
             {
