@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] powerUps;
     public Text scoreText;
     public Text livesText;
+    public Text highScoreText;
     public bool isGameActive;
     public GameObject gameOverScreen;
     public GameObject player;
@@ -32,7 +33,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Level: " + level + "Spawn: " + snackSpawnRate);
+        Debug.Log("Level: " + level + " Spawn: " + snackSpawnRate);
+
 
         switch (score)
         {
@@ -60,8 +62,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnPowerUps());
         UpdateScore(0);
         UpdateLives(0);
+        MainManager.Instance.LoadScore();
         scoreText.gameObject.SetActive(true);
         livesText.gameObject.SetActive(true);
+        highScoreText.gameObject.SetActive(true);
+        highScoreText.text = "High Score: " + MainManager.Instance.highScore;
         player.gameObject.SetActive(true);
     }
 
@@ -115,10 +120,21 @@ public class GameManager : MonoBehaviour
             livesText.text = "Lives: " + lives;
             if (lives == 0)
             {
-                gameOverScreen.gameObject.SetActive(true);
-                isGameActive = false;
-                GameSound.Instance.GameOverSound();
+                GameOver();
             }
+        }
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.gameObject.SetActive(true);
+        isGameActive = false;
+        GameSound.Instance.GameOverSound();
+        if (score > MainManager.Instance.highScore)
+        {
+            MainManager.Instance.highScore = score;
+            highScoreText.text = "High Score: " + MainManager.Instance.highScore;
+            MainManager.Instance.SaveScore();
         }
     }
 

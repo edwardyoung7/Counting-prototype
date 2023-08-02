@@ -15,7 +15,6 @@ public class ObjectsBehavior : MonoBehaviour
     private PlayerController playerController;
     private GameObject player;
     private Rigidbody snacksRb;
-    private GameObject goodSnacks;
 
     // Start is called before the first frame update
     void Start()
