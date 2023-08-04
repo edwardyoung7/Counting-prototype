@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text livesText;
     public Text highScoreText;
+    public Text playerNameText;
     public bool isGameActive;
     public GameObject gameOverScreen;
     public GameObject player;
@@ -33,8 +34,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Level: " + level + " Spawn: " + snackSpawnRate);
-
+        Debug.Log(Application.persistentDataPath);
 
         switch (score)
         {
@@ -52,21 +52,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        MainManager.Instance.LoadFile();
+    }
+
+    private void SetHighScore()
+    {
+        if (MainManager.Instance.highScoreName1 == null && MainManager.Instance.highScore1 == 0)
+        {
+            highScoreText.text = "";
+        }
+        else
+        {
+            highScoreText.text = "High Score: " + MainManager.Instance.highScoreName1 + " " + MainManager.Instance.highScore1;
+        }        
+    }
+
     public void StartGame()
     {
         isGameActive = true;
         score = 0;
         level = 1;
         snackSpawnRate = 2;
+        SetHighScore();
+        UpdateScore(0);
+        PlayerName();
+        UpdateLives(0);
         StartCoroutine(SpawnSnacks());
         StartCoroutine(SpawnPowerUps());
-        UpdateScore(0);
-        UpdateLives(0);
-        MainManager.Instance.LoadScore();
-        scoreText.gameObject.SetActive(true);
-        livesText.gameObject.SetActive(true);
-        highScoreText.gameObject.SetActive(true);
-        highScoreText.text = "High Score: " + MainManager.Instance.highScore;
         player.gameObject.SetActive(true);
     }
 
@@ -108,12 +122,15 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int scoreToAdd)
     {
+        scoreText.gameObject.SetActive(true);
+        highScoreText.gameObject.SetActive(true);
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
 
     public void UpdateLives(int livesToAdd)
     {
+        livesText.gameObject.SetActive(true);
         if (isGameActive)
         {
             lives -= livesToAdd;
@@ -130,12 +147,18 @@ public class GameManager : MonoBehaviour
         gameOverScreen.gameObject.SetActive(true);
         isGameActive = false;
         GameSound.Instance.GameOverSound();
-        if (score > MainManager.Instance.highScore)
+        if (score > MainManager.Instance.highScore1)
         {
-            MainManager.Instance.highScore = score;
-            highScoreText.text = "High Score: " + MainManager.Instance.highScore;
-            MainManager.Instance.SaveScore();
+            MainManager.Instance.highScore1 = score;
+            MainManager.Instance.highScoreName1 = MainManager.Instance.currentPlayer;
+            highScoreText.text = "High Score: " + MainManager.Instance.highScoreName1 + " " + MainManager.Instance.highScore1;
+            MainManager.Instance.SaveFile();
         }
     }
 
+    public void PlayerName()
+    {
+        playerNameText.gameObject.SetActive(true);
+        playerNameText.text = "Player: " + MainManager.Instance.currentPlayer;
+    }
 }

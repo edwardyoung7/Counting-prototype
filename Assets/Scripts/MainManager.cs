@@ -6,7 +6,11 @@ using System.IO;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
-    public int highScore;
+    public string currentPlayer;
+    public int highScore1;
+
+
+    public string highScoreName1;
 
     // Start is called before the first frame update
     void Start()
@@ -34,25 +38,28 @@ public class MainManager : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
-        public int highScore;
+        public int highScore1;
+        public string highScoreName1;
     }
 
-    public void SaveScore()
+    public void SaveFile()
     {
         SaveData data = new SaveData();
-        data.highScore = highScore;
+        data.highScore1 = highScore1;
+        data.highScoreName1 = highScoreName1;
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
-    public void LoadScore()
+    public void LoadFile()
     {
         string path = Application.persistentDataPath + "/savefile.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            highScore = data.highScore;
+            highScore1 = data.highScore1;
+            highScoreName1 = data.highScoreName1;
         }
     }
 }
