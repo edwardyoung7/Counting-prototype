@@ -34,27 +34,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Application.persistentDataPath);
-
-        switch (score)
-        {
-            case >= 20 and <= 100:
-                level = 2;
-                break;
-
-            case >= 101 and <= 250:
-                level = 3;
-                break;
-
-            case >= 251:
-                level = 4;
-                break;
-        }
-    }
-
-    private void Awake()
-    {
-        MainManager.Instance.LoadFile();
+        LevelDifficulty();
     }
 
     private void SetHighScore()
@@ -147,6 +127,17 @@ public class GameManager : MonoBehaviour
         gameOverScreen.gameObject.SetActive(true);
         isGameActive = false;
         GameSound.Instance.GameOverSound();
+        HighScoresRecord();
+    }
+
+    public void PlayerName()
+    {
+        playerNameText.gameObject.SetActive(true);
+        playerNameText.text = "Player: " + MainManager.Instance.currentPlayer;
+    }
+
+    public void HighScoresRecord()
+    {
         if (score > MainManager.Instance.highScore1)
         {
             MainManager.Instance.highScore1 = score;
@@ -154,11 +145,37 @@ public class GameManager : MonoBehaviour
             highScoreText.text = "High Score: " + MainManager.Instance.highScoreName1 + " " + MainManager.Instance.highScore1;
             MainManager.Instance.SaveFile();
         }
+
+        else if (score < MainManager.Instance.highScore1 && score > MainManager.Instance.highScore2)   
+        {
+            MainManager.Instance.highScore2 = score;
+            MainManager.Instance.highScoreName2 = MainManager.Instance.currentPlayer;
+            MainManager.Instance.SaveFile();
+        }
+
+        else if (score < MainManager.Instance.highScore2 && score > MainManager.Instance.highScore3)
+        {
+            MainManager.Instance.highScore3 = score;
+            MainManager.Instance.highScoreName3 = MainManager.Instance.currentPlayer;
+            MainManager.Instance.SaveFile();
+        }
     }
 
-    public void PlayerName()
+    public void LevelDifficulty()
     {
-        playerNameText.gameObject.SetActive(true);
-        playerNameText.text = "Player: " + MainManager.Instance.currentPlayer;
+        switch (score)
+        {
+            case >= 20 and <= 100:
+                level = 2;
+                break;
+
+            case >= 101 and <= 250:
+                level = 3;
+                break;
+
+            case >= 251:
+                level = 4;
+                break;
+        }
     }
 }

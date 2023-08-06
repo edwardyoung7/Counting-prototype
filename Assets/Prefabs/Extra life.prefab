@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: 0
   speed: 3
+  extraLifeIndicator: {fileID: 7870313034217252130, guid: bbf3726e089f144efba0286adda7f4e6, type: 3}
 --- !u!1001 &2035704159448752981
 PrefabInstance:
   m_ObjectHideFlags: 0

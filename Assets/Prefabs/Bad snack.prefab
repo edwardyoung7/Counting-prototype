@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2602687115459999079}
   - component: {fileID: 4475784877406811694}
   - component: {fileID: 8618350918359791050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bad snack
   m_TagString: Bad snack
   m_Icon: {fileID: 0}
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: -10
   speed: 3
+  extraLifeIndicator: {fileID: 0}
+  loseLifeIndicator: {fileID: 0}
 --- !u!65 &8618350918359791050
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,6 +142,10 @@ PrefabInstance:
     - target: {fileID: 181360, guid: bd519f706f8c5cf4dad9fed04ab5b64b, type: 3}
       propertyPath: m_Name
       value: Food_Organic_Carrot
+      objectReference: {fileID: 0}
+    - target: {fileID: 181360, guid: bd519f706f8c5cf4dad9fed04ab5b64b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 403182, guid: bd519f706f8c5cf4dad9fed04ab5b64b, type: 3}
       propertyPath: m_RootOrder

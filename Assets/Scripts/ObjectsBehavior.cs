@@ -7,6 +7,8 @@ public class ObjectsBehavior : MonoBehaviour
 
     public int pointValue;
     public float speed = 3.0f;
+    public GameObject extraLifeIndicator;
+    public GameObject loseLifeIndicator;
 
     private float spawnRange = 15;
     private float spawnPosZ = 0;
@@ -15,6 +17,7 @@ public class ObjectsBehavior : MonoBehaviour
     private PlayerController playerController;
     private GameObject player;
     private Rigidbody snacksRb;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -68,16 +71,18 @@ public class ObjectsBehavior : MonoBehaviour
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Extra life"))
             {
-                Destroy(gameObject);
                 gameManager.UpdateLives(-1);
                 GameSound.Instance.GoodSnackSound();
+                Instantiate(extraLifeIndicator, player.transform.position + (player.transform.up * 4), Quaternion.identity);
+                Destroy(gameObject);
             }
 
             else if (other.CompareTag("Ground") && gameObject.CompareTag("Good snack"))
             {
-                Destroy(gameObject);
                 gameManager.UpdateLives(1);
                 GameSound.Instance.BadSnackSound();
+                Instantiate(loseLifeIndicator, player.transform.position + (player.transform.up * 4), Quaternion.identity);
+                Destroy(gameObject);
             }
             else if (other.CompareTag("Ground") && !gameObject.CompareTag("Good snack"))
             {

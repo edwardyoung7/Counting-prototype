@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float xRange = 15;
     private GameManager gameManager;
     private Animator playerAnim;
+    
 
     public float speed;
     public GameObject goodIndicator;
@@ -18,13 +19,14 @@ public class PlayerController : MonoBehaviour
     public bool hasBadPowerup = false;
     public float rotationSpeed;
     
+    
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerAnim = GameObject.Find("Dog_BorderCollie_01").GetComponent<Animator>();
-   
+
     }
 
     // Update is called once per frame
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
             badIndicator.gameObject.SetActive(true);
             StartCoroutine(BadPowerUpCountDown());
         }
+        
     }
 
     IEnumerator GoodPowerUpCountDown()

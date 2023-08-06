@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,11 +12,16 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject instructionScreen;
     public GameObject startScreen;
+    public GameObject leaderBoardScreen;
+    public TextMeshProUGUI highScore1;
+    public TextMeshProUGUI highScore2;
+    public TextMeshProUGUI highScore3;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,9 +30,17 @@ public class MenuManager : MonoBehaviour
         
     }
 
+    public void UpdateLeaderBoard()
+    {
+        highScore1.text = MainManager.Instance.highScoreName1 + " " + MainManager.Instance.highScore1;
+        highScore2.text = MainManager.Instance.highScoreName2 + " " + MainManager.Instance.highScore2;
+        highScore3.text = MainManager.Instance.highScoreName3 + " " + MainManager.Instance.highScore3;
+    }
+
     public void ClosePopUp()
     {
         instructionScreen.gameObject.SetActive(false);
+        leaderBoardScreen.gameObject.SetActive(false);
         startScreen.gameObject.SetActive(true);
         MenuSound.Instance.ButtonClick();
     }
@@ -35,6 +49,14 @@ public class MenuManager : MonoBehaviour
     {
         instructionScreen.gameObject.SetActive(true);
         startScreen.gameObject.SetActive(false);
+        MenuSound.Instance.ButtonClick();
+    }
+
+    public void LeaderBoard()
+    {
+        leaderBoardScreen.gameObject.SetActive(true);
+        startScreen.gameObject.SetActive(false);
+        UpdateLeaderBoard();
         MenuSound.Instance.ButtonClick();
     }
 
@@ -56,10 +78,11 @@ public class MenuManager : MonoBehaviour
         MenuSound.Instance.ButtonClick();
     }
 
-    public void SetPlayerName(string s)
+    public void SetPlayerName(string name)
     {
-        MainManager.Instance.currentPlayer = s;
+        MainManager.Instance.currentPlayer = name;
     }
+
 
     public void Exit()
     {

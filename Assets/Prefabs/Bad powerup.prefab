@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7467290981977607025}
   - component: {fileID: 7402588215680194156}
   - component: {fileID: 1801238327614833562}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bad powerup
   m_TagString: Bad powerup
   m_Icon: {fileID: 0}
@@ -130,6 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: 0
   speed: 3
+  extraLifeIndicator: {fileID: 0}
+  loseLifeIndicator: {fileID: 0}
 --- !u!1001 &7245839234522679490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,6 +142,10 @@ PrefabInstance:
     - target: {fileID: 1758002909022086, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_Name
       value: Skull_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758002909022086, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4721473126883556, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_RootOrder

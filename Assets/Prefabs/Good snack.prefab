@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3694294652799493626}
   - component: {fileID: 3694294652799493627}
   - component: {fileID: 3236694836917566615}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Good snack
   m_TagString: Good snack
   m_Icon: {fileID: 0}
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: 20
   speed: 3
+  extraLifeIndicator: {fileID: 0}
+  loseLifeIndicator: {fileID: 7870313034217252130, guid: a90a846bf4b4c45f9801fcafebace0ad, type: 3}
 --- !u!65 &3236694836917566615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,6 +142,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 06cdf427476835b42837c1ca7f8cdbd1, type: 3}
       propertyPath: m_Name
       value: Food_Pizza_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 06cdf427476835b42837c1ca7f8cdbd1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 06cdf427476835b42837c1ca7f8cdbd1, type: 3}
       propertyPath: m_RootOrder
