@@ -30,18 +30,14 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    public void UpdateLeaderBoard()
+    public void SetPlayerName(string name)
     {
-        highScore1.text = MainManager.Instance.highScoreName1 + " " + MainManager.Instance.highScore1;
-        highScore2.text = MainManager.Instance.highScoreName2 + " " + MainManager.Instance.highScore2;
-        highScore3.text = MainManager.Instance.highScoreName3 + " " + MainManager.Instance.highScore3;
+        MainManager.Instance.currentPlayer = name;
     }
 
-    public void ClosePopUp()
+    public void StartButton()
     {
-        instructionScreen.gameObject.SetActive(false);
-        leaderBoardScreen.gameObject.SetActive(false);
-        startScreen.gameObject.SetActive(true);
+        SceneManager.LoadScene(1);
         MenuSound.Instance.ButtonClick();
     }
 
@@ -60,9 +56,18 @@ public class MenuManager : MonoBehaviour
         MenuSound.Instance.ButtonClick();
     }
 
-    public void StartButton()
+    public void UpdateLeaderBoard()
     {
-        SceneManager.LoadScene(1);
+        highScore1.text = MainManager.Instance.highScoreName1 + " " + MainManager.Instance.HighScore1;
+        highScore2.text = MainManager.Instance.highScoreName2 + " " + MainManager.Instance.HighScore2;
+        highScore3.text = MainManager.Instance.highScoreName3 + " " + MainManager.Instance.HighScore3;
+    }
+
+    public void ClosePopUp()
+    {
+        instructionScreen.gameObject.SetActive(false);
+        leaderBoardScreen.gameObject.SetActive(false);
+        startScreen.gameObject.SetActive(true);
         MenuSound.Instance.ButtonClick();
     }
 
@@ -77,12 +82,6 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(0);
         MenuSound.Instance.ButtonClick();
     }
-
-    public void SetPlayerName(string name)
-    {
-        MainManager.Instance.currentPlayer = name;
-    }
-
 
     public void Exit()
     {

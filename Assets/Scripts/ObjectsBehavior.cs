@@ -99,7 +99,7 @@ public class ObjectsBehavior : MonoBehaviour
     private void GoodPowerUp()
     {
 
-        if (playerController.hasGoodPowerup == true && CompareTag("Good snack"))
+        if (playerController.HasGoodPowerUp == true && CompareTag("Good snack"))
         {
             Vector3 lookDirection = (player.transform.position - transform.position).normalized;
             transform.Translate(lookDirection * Time.deltaTime * 10);

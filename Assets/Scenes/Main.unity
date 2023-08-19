@@ -241,12 +241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4cede998a964f5491161c66b90657e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
   goodIndicator: {fileID: 1742898377066761}
   badIndicator: {fileID: 1242013170813730006}
-  hasGoodPowerup: 0
-  hasBadPowerup: 0
+  xRange: 15
   rotationSpeed: 720
+  speed: 25
 --- !u!1 &250417154
 GameObject:
   m_ObjectHideFlags: 0

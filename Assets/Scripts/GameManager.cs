@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Text livesText;
     public Text highScoreText;
     public Text playerNameText;
-    public bool isGameActive;
+    public bool isGameActive { get; private set; }
     public GameObject gameOverScreen;
     public GameObject player;
 
@@ -39,13 +39,13 @@ public class GameManager : MonoBehaviour
 
     private void SetHighScore()
     {
-        if (MainManager.Instance.highScoreName1 == null && MainManager.Instance.highScore1 == 0)
+        if (MainManager.Instance.highScoreName1 == null && MainManager.Instance.HighScore1 == 0)
         {
             highScoreText.text = "";
         }
         else
         {
-            highScoreText.text = "High Score: " + MainManager.Instance.highScoreName1 + " " + MainManager.Instance.highScore1;
+            highScoreText.text = "High Score: " + MainManager.Instance.highScoreName1 + " " + MainManager.Instance.HighScore1;
         }        
     }
 
@@ -138,24 +138,24 @@ public class GameManager : MonoBehaviour
 
     public void HighScoresRecord()
     {
-        if (score > MainManager.Instance.highScore1)
+        if (score > MainManager.Instance.HighScore1)
         {
-            MainManager.Instance.highScore1 = score;
+            MainManager.Instance.HighScore1 = score;
             MainManager.Instance.highScoreName1 = MainManager.Instance.currentPlayer;
-            highScoreText.text = "High Score: " + MainManager.Instance.highScoreName1 + " " + MainManager.Instance.highScore1;
+            highScoreText.text = "High Score: " + MainManager.Instance.highScoreName1 + " " + MainManager.Instance.HighScore1;
             MainManager.Instance.SaveFile();
         }
 
-        else if (score < MainManager.Instance.highScore1 && score > MainManager.Instance.highScore2)   
+        else if (score < MainManager.Instance.HighScore1 && score > MainManager.Instance.HighScore2)   
         {
-            MainManager.Instance.highScore2 = score;
+            MainManager.Instance.HighScore2 = score;
             MainManager.Instance.highScoreName2 = MainManager.Instance.currentPlayer;
             MainManager.Instance.SaveFile();
         }
 
-        else if (score < MainManager.Instance.highScore2 && score > MainManager.Instance.highScore3)
+        else if (score < MainManager.Instance.HighScore2 && score > MainManager.Instance.HighScore3)
         {
-            MainManager.Instance.highScore3 = score;
+            MainManager.Instance.HighScore3 = score;
             MainManager.Instance.highScoreName3 = MainManager.Instance.currentPlayer;
             MainManager.Instance.SaveFile();
         }

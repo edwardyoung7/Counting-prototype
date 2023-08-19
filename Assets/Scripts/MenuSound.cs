@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuSound : MonoBehaviour
 {
-    public static MenuSound Instance;
+    public static MenuSound Instance { get; private set; }
     public AudioClip buttonClick;
     private AudioSource audioSource;
 
