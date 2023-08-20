@@ -5,9 +5,7 @@ using UnityEngine;
 public class GameSound : MonoBehaviour
 {
     public static GameSound Instance;
-    public AudioClip goodSnackSound;
-    public AudioClip badSnackSound;
-    public AudioClip gameOverSound;
+    [SerializeField] private AudioClip goodSnackSound, badSnackSound, gameOverSound;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -25,12 +23,6 @@ public class GameSound : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void GoodSnackSound()

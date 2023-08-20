@@ -10,25 +10,9 @@ using UnityEditor;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject instructionScreen;
-    public GameObject startScreen;
-    public GameObject leaderBoardScreen;
-    public TextMeshProUGUI highScore1;
-    public TextMeshProUGUI highScore2;
-    public TextMeshProUGUI highScore3;
+    [SerializeField] private GameObject instructionScreen, startScreen, leaderBoardScreen;
+    [SerializeField] private TextMeshProUGUI highScore1, highScore2, highScore3;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SetPlayerName(string name)
     {
@@ -43,31 +27,24 @@ public class MenuManager : MonoBehaviour
 
     public void HowToPlay()
     {
-        instructionScreen.gameObject.SetActive(true);
-        startScreen.gameObject.SetActive(false);
+        ShowInstructionScreen(true);
+        ShowStartScreen(false);
         MenuSound.Instance.ButtonClick();
     }
 
     public void LeaderBoard()
     {
-        leaderBoardScreen.gameObject.SetActive(true);
-        startScreen.gameObject.SetActive(false);
+        ShowLeadBoard(true);
+        ShowStartScreen(false);
         UpdateLeaderBoard();
         MenuSound.Instance.ButtonClick();
     }
 
-    public void UpdateLeaderBoard()
-    {
-        highScore1.text = MainManager.Instance.highScoreName1 + " " + MainManager.Instance.HighScore1;
-        highScore2.text = MainManager.Instance.highScoreName2 + " " + MainManager.Instance.HighScore2;
-        highScore3.text = MainManager.Instance.highScoreName3 + " " + MainManager.Instance.HighScore3;
-    }
-
     public void ClosePopUp()
     {
-        instructionScreen.gameObject.SetActive(false);
-        leaderBoardScreen.gameObject.SetActive(false);
-        startScreen.gameObject.SetActive(true);
+        ShowInstructionScreen(false);
+        ShowLeadBoard(false);
+        ShowStartScreen(true);
         MenuSound.Instance.ButtonClick();
     }
 
@@ -81,6 +58,28 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         MenuSound.Instance.ButtonClick();
+    }
+
+    private void UpdateLeaderBoard()
+    {
+        highScore1.text = MainManager.Instance.highScoreName1 + " " + MainManager.Instance.HighScore1;
+        highScore2.text = MainManager.Instance.highScoreName2 + " " + MainManager.Instance.HighScore2;
+        highScore3.text = MainManager.Instance.highScoreName3 + " " + MainManager.Instance.HighScore3;
+    }
+
+    private void ShowStartScreen(bool boolean)
+    {
+        startScreen.gameObject.SetActive(boolean);
+    }
+
+    private void ShowInstructionScreen(bool boolean)
+    {
+        instructionScreen.gameObject.SetActive(boolean);
+    }
+
+    private void ShowLeadBoard(bool boolean)
+    {
+        leaderBoardScreen.gameObject.SetActive(boolean);
     }
 
     public void Exit()

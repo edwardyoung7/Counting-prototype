@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class ObjectsBehavior : MonoBehaviour 
 {
-
-    public int pointValue;
-    public float speed = 3.0f;
-    public GameObject extraLifeIndicator;
-    public GameObject loseLifeIndicator;
-
+    [SerializeField]private GameObject extraLifeIndicator, loseLifeIndicator;
+    [SerializeField]private int pointValue;
+    [SerializeField]private float speed = 3.0f;
+    
     private float spawnRange = 15;
     private float spawnPosZ = 0;
     private float spawnPosY = 30;
@@ -18,7 +16,6 @@ public class ObjectsBehavior : MonoBehaviour
     private GameObject player;
     private Rigidbody snacksRb;
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +23,14 @@ public class ObjectsBehavior : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         player = GameObject.Find("Player");
         snacksRb = GetComponent<Rigidbody>();
-
-        transform.position = RandomPosition();
+        RandomSpawnPos();
     }
 
     // Update is called once per frame
     void Update()
     {
         GoodPowerUp();
-        transform.Translate(Vector3.down * Time.deltaTime * 10);
+        ObjectFallSpeed();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,44 +41,32 @@ public class ObjectsBehavior : MonoBehaviour
         {
             if (other.CompareTag("Player") && gameObject.CompareTag("Good snack"))
             {
-                Destroy(gameObject);
-                gameManager.UpdateScore(pointValue);
-                GameSound.Instance.GoodSnackSound();
+                EatGoodSnack();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Bad snack") )
             {
-                Destroy(gameObject);
-                gameManager.UpdateScore(pointValue);
-                GameSound.Instance.BadSnackSound();
+                EatBadSnack();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Bad powerup"))
             {
-                Destroy(gameObject);
-                GameSound.Instance.BadSnackSound();
+                GotBadPowerUp();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Good powerup"))
             {
-                Destroy(gameObject);
-                GameSound.Instance.GoodSnackSound();
+                GotGoodPowerUp();
             }
 
             else if (other.CompareTag("Player") && gameObject.CompareTag("Extra life"))
             {
-                gameManager.UpdateLives(-1);
-                GameSound.Instance.GoodSnackSound();
-                Instantiate(extraLifeIndicator, player.transform.position + (player.transform.up * 4), Quaternion.identity);
-                Destroy(gameObject);
+                GotExtraLife();
             }
 
             else if (other.CompareTag("Ground") && gameObject.CompareTag("Good snack"))
             {
-                gameManager.UpdateLives(1);
-                GameSound.Instance.BadSnackSound();
-                Instantiate(loseLifeIndicator, player.transform.position + (player.transform.up * 4), Quaternion.identity);
-                Destroy(gameObject);
+                LoseLife();
             }
             else if (other.CompareTag("Ground") && !gameObject.CompareTag("Good snack"))
             {
@@ -98,7 +82,6 @@ public class ObjectsBehavior : MonoBehaviour
 
     private void GoodPowerUp()
     {
-
         if (playerController.HasGoodPowerUp == true && CompareTag("Good snack"))
         {
             Vector3 lookDirection = (player.transform.position - transform.position).normalized;
@@ -106,8 +89,70 @@ public class ObjectsBehavior : MonoBehaviour
         }
     }
 
-Vector3 RandomPosition()
+    private void ObjectFallSpeed()
+    {
+        transform.Translate(Vector3.down * Time.deltaTime * 10);
+    }
+
+    private void RandomSpawnPos()
+    {
+        transform.position = RandomPosition();
+    }
+
+    Vector3 RandomPosition()
     {
         return new Vector3(Random.Range(-spawnRange, spawnRange), spawnPosY, spawnPosZ);
+    }
+
+    private void EatGoodSnack()
+    {
+        Destroy(gameObject);
+        gameManager.UpdateScore(pointValue);
+        GameSound.Instance.GoodSnackSound();
+    }
+
+    private void EatBadSnack()
+    {
+        Destroy(gameObject);
+        gameManager.UpdateScore(pointValue);
+        GameSound.Instance.BadSnackSound();
+    }
+
+    private void GotBadPowerUp()
+    {
+        Destroy(gameObject);
+        GameSound.Instance.BadSnackSound();
+    }
+
+    private void GotGoodPowerUp()
+    {
+        Destroy(gameObject);
+        GameSound.Instance.GoodSnackSound();
+    }
+
+    private void GotExtraLife()
+    {
+        gameManager.UpdateLives(-1);
+        GameSound.Instance.GoodSnackSound();
+        SpawnExtraLifeIndicator();
+        Destroy(gameObject);
+    }
+
+    private void SpawnExtraLifeIndicator()
+    {
+        Instantiate(extraLifeIndicator, player.transform.position + (player.transform.up * 4), Quaternion.identity);
+    }
+
+    private void LoseLife()
+    {
+        gameManager.UpdateLives(1);
+        GameSound.Instance.BadSnackSound();
+        SpawnLoseLifeIndicator();
+        Destroy(gameObject);
+    }
+
+    private void SpawnLoseLifeIndicator()
+    {
+        Instantiate(loseLifeIndicator, player.transform.position + (player.transform.up * 4), Quaternion.identity);
     }
 }

@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    [SerializeField] private GameObject goodIndicator, badIndicator;
+    [SerializeField] private float xRange, rotationSpeed, speed;
     private float horizontalInput;
     private float invertedAxis;
     private GameManager gameManager;
     private Animator playerAnim;
-    [SerializeField]
-    private GameObject goodIndicator, badIndicator;
-    [SerializeField]
-    private float xRange, rotationSpeed, speed;
-
+   
     private bool m_hasGoodPowerup = false;
     public bool HasGoodPowerUp
     {
@@ -76,15 +73,25 @@ public class PlayerController : MonoBehaviour
     private void GotGoodPowerUp()
     {
         HasGoodPowerUp = true;
-        goodIndicator.gameObject.SetActive(true);
+        ShowGoodIndicator(true);
         StartCoroutine(GoodPowerUpCountDown());
     }
 
     private void GotBadPowerUp()
     {
         HasBadPowerUp = true;
-        badIndicator.gameObject.SetActive(true);
+        ShowBadIndicator(true);
         StartCoroutine(BadPowerUpCountDown());
+    }
+
+    private void ShowGoodIndicator(bool boolean)
+    {
+        goodIndicator.gameObject.SetActive(boolean);
+    }
+
+    private void ShowBadIndicator(bool boolean)
+    {
+        badIndicator.gameObject.SetActive(boolean);
     }
 
     private void PlayerBounds()
