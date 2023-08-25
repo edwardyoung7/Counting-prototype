@@ -1031,7 +1031,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bf8abdd21474012b0036adc3042038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 3
+  scoreText: {fileID: 598753586}
+  livesText: {fileID: 1451956364}
+  highScoreText: {fileID: 1727601049}
+  playerNameText: {fileID: 602816824}
+  gameOverScreen: {fileID: 779398251}
+  player: {fileID: 145979411}
   snacks:
   - {fileID: 5454789403810042226, guid: 41ef7e9da39fb4000b7a2845fcf24ddc, type: 3}
   - {fileID: 3694294652799493617, guid: b9977e4b8471e4d70bf3da7398130494, type: 3}
@@ -1041,13 +1046,6 @@ MonoBehaviour:
   - {fileID: 6439527586064089929, guid: 4a1aff08ad03a432db2617af32dd7358, type: 3}
   - {fileID: 6074020402248398924, guid: 5b250a1771a58419ca384e70f9bc26d3, type: 3}
   - {fileID: 8052650100970126248, guid: 1755eec1cb0684841958e73b6d624d63, type: 3}
-  scoreText: {fileID: 598753586}
-  livesText: {fileID: 1451956364}
-  highScoreText: {fileID: 1727601049}
-  playerNameText: {fileID: 602816824}
-  isGameActive: 0
-  gameOverScreen: {fileID: 779398251}
-  player: {fileID: 145979411}
 --- !u!4 &817951732
 Transform:
   m_ObjectHideFlags: 0

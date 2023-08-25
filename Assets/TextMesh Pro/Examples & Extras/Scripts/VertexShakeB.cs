@@ -31,7 +31,7 @@ namespace TMPro.Examples
         {
             TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(ON_TEXT_CHANGED);
         }
-
+        
 
         void Start()
         {

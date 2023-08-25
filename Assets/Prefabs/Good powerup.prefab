@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8640036961833840510}
   - component: {fileID: 502738172194822979}
   - component: {fileID: 8323160814696070584}
-  - component: {fileID: 7955899787166154681}
+  - component: {fileID: 9175381716038845633}
   m_Layer: 6
   m_Name: Good powerup
   m_TagString: Good powerup
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7955899787166154681
+--- !u!114 &9175381716038845633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,13 +125,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6074020402248398924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cc8538ddad84e058112de8e085c8cd, type: 3}
+  m_Script: {fileID: 11500000, guid: d815066e4a14e4e87bc617a840353b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 0
-  speed: 3
-  extraLifeIndicator: {fileID: 0}
-  loseLifeIndicator: {fileID: 0}
 --- !u!1001 &431196346505515019
 PrefabInstance:
   m_ObjectHideFlags: 0

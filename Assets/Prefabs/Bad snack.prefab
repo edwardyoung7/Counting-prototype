@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3743436329673780879}
   - component: {fileID: 6197102432831005033}
   - component: {fileID: 2602687115459999079}
-  - component: {fileID: 4475784877406811694}
+  - component: {fileID: 7130597768887892553}
   - component: {fileID: 8618350918359791050}
   m_Layer: 6
   m_Name: Bad snack
@@ -103,7 +103,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4475784877406811694
+--- !u!114 &7130597768887892553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,13 +112,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5454789403810042226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cc8538ddad84e058112de8e085c8cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 7035dba9530c14d5689a1d3ca3f66648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointValue: -10
-  speed: 3
-  extraLifeIndicator: {fileID: 0}
-  loseLifeIndicator: {fileID: 0}
 --- !u!65 &8618350918359791050
 BoxCollider:
   m_ObjectHideFlags: 0

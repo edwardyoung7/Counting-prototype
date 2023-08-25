@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8858895684997846139}
   - component: {fileID: 859229662442938438}
   - component: {fileID: 9121834125974079165}
-  - component: {fileID: 7169596273760437436}
+  - component: {fileID: 6498714503011732285}
   m_Layer: 0
   m_Name: Extra life
   m_TagString: Extra life
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7169596273760437436
+--- !u!114 &6498714503011732285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,11 +125,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6439527586064089929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cc8538ddad84e058112de8e085c8cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aeb87e292105485bb5adabd75870854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 0
-  speed: 3
   extraLifeIndicator: {fileID: 7870313034217252130, guid: bbf3726e089f144efba0286adda7f4e6, type: 3}
 --- !u!1001 &2035704159448752981
 PrefabInstance:

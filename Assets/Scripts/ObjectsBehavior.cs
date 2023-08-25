@@ -6,8 +6,8 @@ public class ObjectsBehavior : MonoBehaviour
 {
     [SerializeField]private GameObject extraLifeIndicator, loseLifeIndicator;
     [SerializeField]private int pointValue;
-    [SerializeField]private float speed = 3.0f;
-    
+
+    private float speed = 10.0f;
     private float spawnRange = 15;
     private float spawnPosZ = 0;
     private float spawnPosY = 30;
@@ -89,9 +89,9 @@ public class ObjectsBehavior : MonoBehaviour
         }
     }
 
-    private void ObjectFallSpeed()
+    protected void ObjectFallSpeed()
     {
-        transform.Translate(Vector3.down * Time.deltaTime * 10);
+        transform.Translate(Vector3.down * Time.deltaTime * speed);
     }
 
     private void RandomSpawnPos()

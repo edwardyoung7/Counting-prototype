@@ -61,6 +61,7 @@ namespace TMPro.Examples
             TMPro_EventManager.TEXT_CHANGED_EVENT.Add(ON_TEXT_CHANGED);
         }
 
+
         void OnDisable()
         {
             // UnSubscribe to event fired when text object has been regenerated.

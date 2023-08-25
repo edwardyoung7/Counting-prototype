@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3694294652799493628}
   - component: {fileID: 3694294652799493631}
   - component: {fileID: 3694294652799493626}
-  - component: {fileID: 3694294652799493627}
+  - component: {fileID: -673453421606907106}
   - component: {fileID: 3236694836917566615}
   m_Layer: 6
   m_Name: Good snack
@@ -103,7 +103,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3694294652799493627
+--- !u!114 &-673453421606907106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,12 +112,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3694294652799493617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cc8538ddad84e058112de8e085c8cd, type: 3}
+  m_Script: {fileID: 11500000, guid: fe60d834406a8413b84e5e067c03fc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointValue: 20
-  speed: 3
-  extraLifeIndicator: {fileID: 0}
   loseLifeIndicator: {fileID: 7870313034217252130, guid: a90a846bf4b4c45f9801fcafebace0ad, type: 3}
 --- !u!65 &3236694836917566615
 BoxCollider:
